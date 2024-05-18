@@ -5,7 +5,7 @@ module.exports = {
   cooldown: 5,
   data: new SlashCommandBuilder()
     .setName("ping")
-    .setDescription("Provides bot ping"),
+    .setDescription("Pong!"),
   async execute(interaction) {
     const ws = interaction.client.ws.ping;
     const msg = await interaction.deferReply();
