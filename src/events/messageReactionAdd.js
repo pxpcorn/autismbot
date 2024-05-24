@@ -9,6 +9,23 @@ function getStarEmoji(starCount) {
   return '⭐';
 }
 
+async function getRepliedMessageContent(repliedMessage) {
+  if (repliedMessage.content) {
+    return repliedMessage.content.slice(0, 1024);
+  } else if (repliedMessage.attachments.size > 0) {
+    const firstAttachment = repliedMessage.attachments.first();
+    const attachmentType = firstAttachment.contentType;
+
+    if (attachmentType.startsWith('image/')) {
+      return '`[Attached Image 🖼️]`';
+    } else if (attachmentType.startsWith('video/')) {
+      return '`[Attached Video 🎥]`';
+    } else {
+      return '`[Attached File 📁]`';
+    }
+  }
+}
+
 module.exports = {
   name: Events.MessageReactionAdd,
   async execute(reaction) {
@@ -59,11 +76,18 @@ module.exports = {
 
       const repliedMessage = message.reference ? await message.fetchReference() : null;
       if (repliedMessage) {
-        const repliedMessageAuthor = repliedMessage.author.displayName;
-        const repliedMessageContent = repliedMessage.content.slice(0, 1000);
+        const repliedMessageContent = await getRepliedMessageContent(repliedMessage);
+
+        let repliedMessageField;
+        if (repliedMessage.content && repliedMessage.attachments.size > 0) {
+          repliedMessageField = `${repliedMessageContent} \n\`[Attachment 🖼️]\``;
+        } else {
+          repliedMessageField = repliedMessageContent;
+        }
+
         embed.addFields({
-          name: `Replied To: ${repliedMessageAuthor}`,
-          value: `${repliedMessageContent}`,
+          name: `Replied to ${repliedMessage.author.displayName} `,
+          value: repliedMessageField,
         });
       }
 
