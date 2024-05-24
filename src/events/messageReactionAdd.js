@@ -1,6 +1,5 @@
 const { Events, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
-
-const starboardMessages = {};
+const Starboard = require('../schemas/starboard');
 
 function getStarEmoji(starCount) {
   if (starCount >= 5) return '🌟';
@@ -45,7 +44,7 @@ module.exports = {
     try {
       const starCount = message.reactions.cache.get('⭐').count;
 
-      if (starCount < 1) return;
+      if (starCount < 3) return;
 
       const starboardChannel = message.guild.channels.cache.get('1242913284676517909');
 
@@ -112,18 +111,18 @@ module.exports = {
         starboardMessageData.components = [row];
       }
 
-      if (starboardMessages[message.id]) {
-        const starboardMessage = await starboardChannel.messages.fetch(
-          starboardMessages[message.id].starboardMessageId
-        );
+      const existingEntry = await Starboard.findOne({ originalMessageId: message.id });
+
+      if (existingEntry) {
+        const starboardMessage = await starboardChannel.messages.fetch(existingEntry.starboardMessageId);
         await starboardMessage.edit(starboardMessageData);
-        starboardMessages[message.id].starCount = starCount;
       } else {
         const starboardMessage = await starboardChannel.send(starboardMessageData);
-        starboardMessages[message.id] = {
+        const newEntry = new Starboard({
+          originalMessageId: message.id,
           starboardMessageId: starboardMessage.id,
-          starCount,
-        };
+        });
+        await newEntry.save();
       }
     } catch (error) {
       console.error('Error in messageReactionAdd event:', error);
