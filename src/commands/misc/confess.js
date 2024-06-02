@@ -22,7 +22,7 @@ module.exports = {
 
     if (interaction.channel.id === '1246219210431004752') {
       await interaction.reply({
-        content: `<:w_BlueVerified:816856006915129345> A tua confissão foi enviada para ${confession.url}`,
+        content: `✅ A tua confissão foi enviada para ${confession.url}`,
         ephemeral: true,
       });
 

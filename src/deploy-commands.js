@@ -1,7 +1,8 @@
 const { REST, Routes } = require('discord.js');
-const { clientId, token } = require('../config.json');
+const { clientId, token, mongoURL } = require('../config.json');
 const fs = require('node:fs');
 const path = require('node:path');
+const mongoose = require('mongoose');
 
 const commands = [];
 const foldersPath = path.join(__dirname, 'commands');
@@ -25,6 +26,9 @@ const rest = new REST().setToken(token);
 
 (async () => {
   try {
+    await mongoose.connect(mongoURL || '');
+
+    console.log('Successfully connected to MongoDB');
     console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
     const data = await rest.put(Routes.applicationCommands(clientId), {
@@ -34,5 +38,8 @@ const rest = new REST().setToken(token);
     console.log(`Successfully reloaded ${data.length} application (/) commands.`);
   } catch (error) {
     console.error(error);
+  } finally {
+    mongoose.connection.close();
+    console.log('Successfully disconnected from MongoDB');
   }
 })();
