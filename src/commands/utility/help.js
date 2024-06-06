@@ -34,7 +34,7 @@ module.exports = {
     const embed = new EmbedBuilder()
       .setAuthor({ name: interaction.client.user.tag, iconURL: interaction.client.user.displayAvatarURL() })
       .setDescription(
-        '<a:g_PepeHat:1241409438456348695> **The Official Autism™ Discord Bot** <a:g_PepeHat:1241409438456348695>\n\n**Categorias de comandos:**\n- 🔧 Utility\n- 👮 Moderation\n- 😎 Fun\n- 🎲 Miscellaneous\n\n💡*Seleciona uma categoria aqui em baixo para mais detalhes sobre os comandos.*'
+        '<a:g_PepeHat:1241409438456348695> **Official Autism™ Discord Bot** <a:g_PepeHat:1241409438456348695>\n\n**Categorias de comandos:**\n- 🔧 Utility\n- 👮 Moderation\n- 😎 Fun\n- 🎲 Miscellaneous\n\n💡*Seleciona uma categoria aqui em baixo para mais detalhes sobre os comandos.*'
       )
       .setThumbnail(interaction.guild.iconURL())
       .setColor(Math.floor(Math.random() * (1 << 24)))
@@ -55,26 +55,48 @@ module.exports = {
         case 'utility':
           embed = new EmbedBuilder()
             .setTitle('🔧 Utility Commands')
-            .setDescription('Here are some utility commands...')
-            .setColor(Math.floor(Math.random() * (1 << 24)));
+            .setDescription('**Lista de comandos**')
+            .addFields(
+              { name: 'help', value: '`/help`', inline: true },
+              { name: 'ping', value: '`/ping`', inline: true },
+              { name: 'avatar', value: '`/avatar`', inline: true },
+              { name: 'server', value: '`/server`', inline: true },
+              { name: 'user', value: '`/user`', inline: true }
+            )
+            .setColor(Math.floor(Math.random() * (1 << 24)))
+            .setTimestamp();
           break;
         case 'fun':
           embed = new EmbedBuilder()
             .setTitle('😎 Fun Commands')
-            .setDescription('Here are some fun commands...')
-            .setColor(Math.floor(Math.random() * (1 << 24)));
+            .setDescription('Lista de comandos')
+            .addFields(
+              { name: 'autism', value: '`/autism`', inline: true },
+              { name: 'boobs', value: '`/boobs`', inline: true },
+              { name: 'gay', value: '`/gay`', inline: true },
+              { name: 'pedo', value: '`/pedo`', inline: true },
+              { name: 'penis', value: '`/penis`', inline: true },
+              { name: 'qi', value: '`/qi`', inline: true },
+              { name: 'simp', value: '`/simp`', inline: true }
+            )
+            .setColor(Math.floor(Math.random() * (1 << 24)))
+            .setTimestamp();
           break;
         case 'moderation':
           embed = new EmbedBuilder()
             .setTitle('👮 Moderation Commands')
-            .setDescription('Here are some moderation commands...')
-            .setColor(Math.floor(Math.random() * (1 << 24)));
+            .setDescription('Lista de comandos')
+            .addFields({ name: 'ban', value: '`/ban`', inline: true })
+            .setColor(Math.floor(Math.random() * (1 << 24)))
+            .setTimestamp();
           break;
         case 'misc':
           embed = new EmbedBuilder()
             .setTitle('🎲 Miscellaneous Commands')
-            .setDescription('Here are some miscellaneous commands...')
-            .setColor(Math.floor(Math.random() * (1 << 24)));
+            .setDescription('Lista de comandos')
+            .addFields({ name: 'confess', value: '`/confess`', inline: true })
+            .setColor(Math.floor(Math.random() * (1 << 24)))
+            .setTimestamp();
           break;
       }
 
