@@ -5,9 +5,12 @@ module.exports = {
   async execute(message) {
     /* ***** One Word Story ***** */
     if (message.channel.id === '1241446026599075941') {
+      const fetchMsg = await message.channel.messages.fetch({ limit: 2 });
+      const lastMsg = fetchMsg.size === 1 ? null : fetchMsg.last();
       if (
         (message.content && (message.content.split(' ').length > 1 || message.content.length > 15)) ||
-        message.author.bot
+        message.author.bot ||
+        lastMsg?.author.id === message.author.id
       ) {
         message.delete().catch(console.error);
         return;
