@@ -47,7 +47,7 @@ module.exports = {
       const existingEntry = await Starboard.findOne({ originalMessageId: message.id });
       if (!existingEntry) return;
 
-      const starboardChannel = message.guild.channels.cache.get('1242913284676517909');
+      const starboardChannel = message.guild.channels.cache.get('565341691305787392');
       const starboardMessage = await starboardChannel.messages.fetch(existingEntry.starboardMessageId);
 
       if (starCount < 3) {

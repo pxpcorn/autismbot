@@ -4,7 +4,7 @@ module.exports = {
   name: Events.MessageCreate,
   async execute(message) {
     /* ***** One Word Story ***** */
-    if (message.channel.id === '1241446026599075941') {
+    if (message.channel.id === '1292960072158281890') {
       const fetchMsg = await message.channel.messages.fetch({ limit: 2 });
       const lastMsg = fetchMsg.size === 1 ? null : fetchMsg.last();
       if (
@@ -18,7 +18,7 @@ module.exports = {
     }
 
     /* ***** Counting System ***** */
-    if (message.channel.id === '1241477263070068880' && !message.author.bot) {
+    if (message.channel.id === '1102310198451904622' && !message.author.bot) {
       const currentCount = parseInt(message.content);
       const fetchedMessages = await message.channel.messages.fetch({ limit: 2 });
       const lastMessage = fetchedMessages.size === 1 ? null : fetchedMessages.last();

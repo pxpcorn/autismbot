@@ -17,10 +17,10 @@ module.exports = {
     .setDescription('Escreve uma confissão')
     .addStringOption((option) => option.setName('confession').setDescription('a tua confissão').setRequired(true)),
   async execute(interaction) {
-    const confession = interaction.client.channels.cache.get('1246219232727928872');
-    const logs = interaction.client.channels.cache.get('1246470739025199195');
+    const confession = interaction.client.channels.cache.get('577996273571987466');
+    const logs = interaction.client.channels.cache.get('568089899404886026');
 
-    if (interaction.channel.id === '1246219210431004752') {
+    if (interaction.channel.id === '577996163215654922') {
       await interaction.reply({
         content: `✅ A tua confissão foi enviada para ${confession.url}`,
         ephemeral: true,
