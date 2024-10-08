@@ -46,7 +46,7 @@ module.exports = {
 
       if (starCount < 3) return;
 
-      const starboardChannel = message.guild.channels.cache.get('565341691305787392');
+      const starboardChannel = message.guild.channels.cache.get('1293008256050003998');
 
       const starEmoji = getStarEmoji(starCount);
 
