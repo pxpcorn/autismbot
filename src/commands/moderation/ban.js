@@ -3,7 +3,7 @@ const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = re
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('ban')
-    .setDescription('Banir todos os membros que entraram nos últimos x segundos')
+    .setDescription('Banir todos os membros que entraram nos últimos x segundos (30 min = 1800 segundos)')
     .addIntegerOption((option) => option.setName('seconds').setDescription('Number of seconds').setRequired(true)),
   async execute(interaction) {
     if (!interaction.member.roles.cache.has('498606831967404044')) {
@@ -11,11 +11,11 @@ module.exports = {
     }
 
     const seconds = interaction.options.getInteger('seconds');
-    const maxSeconds = 600;
+    const maxSeconds = 1800;
 
     if (seconds > maxSeconds) {
       return interaction.reply({
-        content: `Só podes banir até 10 minutos. \`(${maxSeconds} segundos)\``,
+        content: `Só podes banir até 30 minutos. \`(${maxSeconds} segundos)\``,
         ephemeral: true,
       });
     }

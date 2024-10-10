@@ -15,7 +15,7 @@ module.exports = {
 
     if (user === interaction.user) {
       await interaction.reply(
-        `${user}, o teu nível de simparia é de \`${Math.floor(Math.random() * 200)}%\` <:g_PepeSimp:695382371763224628>`
+        `${user}, o teu nível de simparia é de \`${Math.floor(Math.random() * 100)}%\` <:g_PepeSimp:695382371763224628>`
       );
     } else {
       await interaction.reply(

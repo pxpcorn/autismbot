@@ -94,10 +94,6 @@ module.exports = {
         embed.setDescription(message.content);
       }
 
-      if (!isVideo) {
-        embed.addFields({ name: 'Jump to Message', value: `[Click Here](${message.url})` });
-      }
-
       const starboardMessageData = {
         content: `${starEmoji} **${starCount}** | ${message.url}`,
         embeds: [embed],
