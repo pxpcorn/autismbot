@@ -35,10 +35,10 @@ module.exports = {
       const embed = new EmbedBuilder()
         .setColor(Math.floor(Math.random() * (1 << 24)))
         .setTitle('<a:c_dance:525378656756039680> HORA DO BUMP <a:c_dance:525378656756039680>')
-        .setDescription('Faz `/bump` para dares bump no server')
+        .setDescription('Faz `/bump` para dares bump no server!')
         .setTimestamp();
       setTimeout(() => {
-        message.channel.send({ content: '<@&366276830795399168>', embeds: [embed] });
+        message.channel.send({ content: '<@&498606831967404044>', embeds: [embed] });
       }, 7200000);
       return;
     }
