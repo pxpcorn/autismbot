@@ -1,4 +1,4 @@
-const { Events } = require('discord.js');
+const { Events, EmbedBuilder } = require('discord.js');
 
 module.exports = {
   name: Events.MessageCreate,
@@ -28,6 +28,24 @@ module.exports = {
         message.delete().catch(console.error);
         return;
       }
+    }
+
+    /* ***** Bump Reminder ***** */
+    if (
+      message.channel.id === '947580770866827315' &&
+      message.author.id === '302050872383242240' &&
+      message.content.includes('Bump done!')
+    ) {
+      message.channel.send(`Obrigado por fazeres **bump**! Vou voltar a lembrar-te daqui a 2 horas.`);
+      const embed = new EmbedBuilder()
+        .setColor(Math.floor(Math.random() * (1 << 24)))
+        .setTitle('<a:c_dance:525378656756039680> HORA DO BUMP! <a:c_dance:525378656756039680>')
+        .setDescription('Faz `/bump` para dares bump no server')
+        .setTimestamp();
+      setTimeout(() => {
+        message.channel.send({ content: '<@&366276830795399168>', embeds: [embed] });
+      }, 7200000);
+      return;
     }
   },
 };
