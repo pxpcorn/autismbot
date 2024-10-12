@@ -86,7 +86,10 @@ module.exports = {
           embed = new EmbedBuilder()
             .setTitle('👮 Moderation Commands')
             .setDescription('Lista de comandos')
-            .addFields({ name: 'ban', value: '`/ban`', inline: true })
+            .addFields(
+              { name: 'massban', value: '`/massban`', inline: true },
+              { name: 'embed', value: '`/embed`', inline: true }
+            )
             .setColor(Math.floor(Math.random() * (1 << 24)))
             .setTimestamp();
           break;

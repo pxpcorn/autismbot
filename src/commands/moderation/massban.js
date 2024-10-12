@@ -2,7 +2,7 @@ const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = re
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('ban')
+    .setName('massban')
     .setDescription('Banir todos os membros que entraram nos últimos x segundos (30 min = 1800 segundos)')
     .addIntegerOption((option) => option.setName('seconds').setDescription('Number of seconds').setRequired(true)),
   async execute(interaction) {
