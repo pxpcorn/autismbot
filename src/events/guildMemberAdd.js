@@ -36,6 +36,8 @@ const applyText = (canvas, text) => {
 module.exports = {
   name: Events.GuildMemberAdd,
   async execute(member) {
+    if (member.user.bot) return;
+
     const channel = member.guild.channels.cache.get('947580770866827315');
     if (!channel) return;
 
@@ -66,7 +68,7 @@ module.exports = {
     const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: 'welcome-image.png' });
 
     channel.send({
-      content: `Bem-vindo(a) <@${member.id}>, és o **${member.guild.memberCount}${suffix}** membro do **${member.guild.name}!** <a:c_dance:525378656756039680>`,
+      content: `Bem-vindo/a <@${member.id}>, és o **${member.guild.memberCount}${suffix}** membro do **${member.guild.name}!** <a:c_dance:525378656756039680>`,
       files: [attachment],
     });
   },

@@ -3,6 +3,11 @@ const { Events, EmbedBuilder } = require('discord.js');
 module.exports = {
   name: Events.MessageCreate,
   async execute(message) {
+    /* ***** Confess Delete ***** */
+    if (message.channel.id === '577996163215654922') {
+      message.delete().catch(console.error);
+    }
+
     /* ***** One Word Story ***** */
     if (message.channel.id === '1292960072158281890') {
       const fetchMsg = await message.channel.messages.fetch({ limit: 2 });
