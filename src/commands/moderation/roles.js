@@ -31,6 +31,8 @@ module.exports = {
 
     const rolesToAssign = levelRoles.filter((lr) => lr.level <= level);
 
+    await interaction.deferReply({ ephemeral: true });
+
     try {
       for (const role of rolesToAssign) {
         const roleToAdd = interaction.guild.roles.cache.get(role.roleId);
@@ -39,13 +41,13 @@ module.exports = {
         await targetUser.roles.add(roleToAdd);
       }
 
-      interaction.reply({
+      await interaction.editReply({
         content: `Todas as roles até ao nível \`${level}\` foram devolvidas a **${targetUser.displayName}**`,
         ephemeral: true,
       });
     } catch (error) {
       console.error(error);
-      interaction.reply({ content: 'There was an error assigning the roles.', ephemeral: true });
+      await interaction.editReply({ content: 'There was an error assigning the roles.', ephemeral: true });
     }
   },
 };

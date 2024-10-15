@@ -36,6 +36,7 @@ const applyText = (canvas, text) => {
 module.exports = {
   name: Events.GuildMemberAdd,
   async execute(member) {
+    /* ***** Welcomer Message ***** */
     if (member.user.bot) return;
 
     const channel = member.guild.channels.cache.get('947580770866827315');
@@ -71,5 +72,18 @@ module.exports = {
       content: `Bem-vindo/a <@${member.id}>, és o **${member.guild.memberCount}${suffix}** membro do **${member.guild.name}!** <a:c_dance:525378656756039680>`,
       files: [attachment],
     });
+
+    /* ***** Voice Counter ***** */
+    const voiceChannel = member.guild.channels.cache.get('1108937997702942783');
+    if (!voiceChannel) return;
+
+    const memberCount = member.guild.memberCount;
+    const newChannelName = `📈Members: ${memberCount}`;
+
+    try {
+      await voiceChannel.setName(newChannelName);
+    } catch (error) {
+      console.error('Erro ao atualizar o nome do canal');
+    }
   },
 };
