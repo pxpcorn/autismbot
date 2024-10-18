@@ -3,6 +3,21 @@ const { Collection, Events } = require('discord.js');
 module.exports = {
   name: Events.InteractionCreate,
   async execute(interaction) {
+    if (interaction.isButton()) {
+      if (
+        interaction.customId === 'warm_colors' ||
+        interaction.customId === 'cool_colors' ||
+        interaction.customId === 'remove_color'
+      ) {
+        try {
+          await require('../commands/moderation/colors').handleButton(interaction);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      return;
+    }
+
     if (!interaction.isChatInputCommand()) return;
 
     const command = interaction.client.commands.get(interaction.commandName);

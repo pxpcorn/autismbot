@@ -87,9 +87,8 @@ module.exports = {
             .setTitle('👮 Moderation Commands')
             .setDescription('Lista de comandos')
             .addFields(
-              { name: 'massban', value: '`/massban`', inline: true },
-              { name: 'embed', value: '`/embed`', inline: true },
-              { name: 'roles', value: '`/roles`', inline: true }
+              { name: 'Owner Only 👑', value: '`/embed` `/colors`' },
+              { name: 'Moderators 👮', value: '`/massban` `/roles`' }
             )
             .setColor(Math.floor(Math.random() * (1 << 24)))
             .setTimestamp();
