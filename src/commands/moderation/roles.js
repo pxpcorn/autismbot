@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
+  cooldown: 5,
   data: new SlashCommandBuilder()
     .setName('roles')
     .setDescription('Devolve as roles consoante o nível')
@@ -31,7 +32,7 @@ module.exports = {
 
     const rolesToAssign = levelRoles.filter((lr) => lr.level <= level);
 
-    await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply();
 
     try {
       for (const role of rolesToAssign) {
@@ -43,11 +44,10 @@ module.exports = {
 
       await interaction.editReply({
         content: `Todas as roles até ao nível \`${level}\` foram devolvidas a **${targetUser.displayName}**`,
-        ephemeral: true,
       });
     } catch (error) {
       console.error(error);
-      await interaction.editReply({ content: 'There was an error assigning the roles.', ephemeral: true });
+      await interaction.editReply({ content: 'There was an error assigning the roles.' });
     }
   },
 };

@@ -52,7 +52,7 @@ module.exports = {
           { name: 'Link', value: `${logID.url}` }
         )
         .setTimestamp();
-      await logs.send({ embeds: [embedLog] });
+      return logs.send({ embeds: [embedLog] });
     }
   },
 };

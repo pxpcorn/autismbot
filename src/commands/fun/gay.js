@@ -1,3 +1,4 @@
+const { RoleSelectMenuInteraction } = require('discord.js');
 const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
@@ -11,16 +12,16 @@ module.exports = {
     const member = await interaction.guild.members.fetch(user.id);
 
     if (user.bot)
-      return await interaction.reply(`${interaction.user}, EU SOU MACHO CARALHO! <:g_PepeSpit:816865612734791711>`);
+      return interaction.reply(`${interaction.user}, EU SOU MACHO CARALHO! <:g_PepeSpit:816865612734791711>`);
 
     if (user === interaction.user) {
-      await interaction.reply(
+      return interaction.reply(
         `${user}, o teu nível de homosexualidade é de \`${Math.floor(
           Math.random() * 100
         )}%\` <:g_peperose:813479937742864396>`
       );
     } else {
-      await interaction.reply(
+      return interaction.reply(
         `${interaction.user}, o nível de homosexualidade de **${member.displayName}** é de \`${Math.floor(
           Math.random() * 100
         )}%\` <:g_peperose:813479937742864396>`

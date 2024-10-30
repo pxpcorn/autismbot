@@ -8,20 +8,21 @@ module.exports = {
     .addUserOption((option) => option.setName('user').setDescription('escolhe um membro')),
   async execute(interaction) {
     const user = interaction.options.getUser('user') || interaction.user;
+    const member = await interaction.guild.members.fetch(user.id);
 
     const embed = new EmbedBuilder()
       .setColor(Math.floor(Math.random() * (1 << 24)))
       .setTitle(`${user.tag}'s avatar`)
-      .setImage(`${user.displayAvatarURL({ size: 512 })}`)
+      .setImage(`${member.displayAvatarURL({ size: 512 })}`)
       .setTimestamp();
 
     const button = new ButtonBuilder()
       .setLabel('Avatar Link')
       .setStyle(ButtonStyle.Link)
-      .setURL(`${user.avatarURL({ size: 512 })}`);
+      .setURL(`${member.avatarURL({ size: 512 })}`);
 
     const row = new ActionRowBuilder().addComponents(button);
 
-    await interaction.reply({ embeds: [embed], components: [row] });
+    return interaction.reply({ embeds: [embed], components: [row] });
   },
 };

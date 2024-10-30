@@ -103,12 +103,12 @@ module.exports = {
           break;
       }
 
-      await i.update({ embeds: [embed], components: [row] });
+      return i.update({ embeds: [embed], components: [row] });
     });
 
     collector.on('end', (collected) => {
       if (collected.size === 0) {
-        interaction.followUp({ content: 'Não selecionaste nenhuma categoria.', ephemeral: true });
+        return interaction.followUp({ content: 'Não selecionaste nenhuma categoria.', ephemeral: true });
       }
     });
   },

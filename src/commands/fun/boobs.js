@@ -24,16 +24,16 @@ module.exports = {
     const option = options[Math.floor(Math.random() * options.length)];
 
     if (user.bot)
-      return await interaction.reply(
+      return interaction.reply(
         `${interaction.user}, não possuo tetos mas podes mostrar os teus... <:g_PepeRape:372865749200535554>`
       );
 
-    if (user.id === '487043511225679899') return await interaction.reply('**ERROR!** No mamas found.');
+    if (user.id === '487043511225679899') return interaction.reply('**ERROR!** No mamas found.');
 
     if (user === interaction.user) {
-      await interaction.reply(`${user}, bons tetos... tu és \`${option}\` <:r_Devil:816867865512247346>`);
+      return interaction.reply(`${user}, bons tetos... tu és \`${option}\` <:r_Devil:816867865512247346>`);
     } else {
-      await interaction.reply(
+      return interaction.reply(
         `${interaction.user}, o tamanho das mamas de **${member.displayName}** é \`${option}\` <:r_Devil:816867865512247346>`
       );
     }

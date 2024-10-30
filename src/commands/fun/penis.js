@@ -35,12 +35,12 @@ module.exports = {
     const option = options[Math.floor(Math.random() * options.length)];
 
     if (user.bot)
-      return await interaction.reply(`${interaction.user}, **ERROR!** Size too big. <:g_PepeCool:599260250901577748>`);
+      return interaction.reply(`${interaction.user}, **ERROR!** Size too big. <:g_PepeCool:599260250901577748>`);
 
     if (user === interaction.user) {
-      await interaction.reply(`${user}, Your dick size:\n\`${option}\``);
+      return interaction.reply(`${user}, Your dick size:\n\`${option}\``);
     } else {
-      await interaction.reply(`${interaction.user}, **${member.displayName}**'s dick size:\n\`${option}\``);
+      return interaction.reply(`${interaction.user}, **${member.displayName}**'s dick size:\n\`${option}\``);
     }
   },
 };

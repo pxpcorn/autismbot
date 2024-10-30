@@ -5,7 +5,6 @@ const {
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
-  ComponentType,
 } = require('discord.js');
 
 const colorNames = [
@@ -62,6 +61,7 @@ const colorNames = [
 ];
 
 module.exports = {
+  cooldown: 5,
   data: new SlashCommandBuilder().setName('colors').setDescription('Send colors embed'),
   async execute(interaction) {
     if (!interaction.member.roles.cache.has('366276830795399168')) {
@@ -99,7 +99,7 @@ module.exports = {
       embeds: [embed],
       components: [row],
     });
-    await interaction.reply({ content: 'Embed foi enviado com sucesso! ✅', ephemeral: true });
+    return interaction.reply({ content: 'Embed foi enviado com sucesso! ✅', ephemeral: true });
   },
 
   // Handling Button Interactions for Color Selection
@@ -195,8 +195,8 @@ module.exports = {
         for (const colorRole of currentColorRoles.values()) {
           await interaction.member.roles.remove(colorRole);
         }
-        await interaction.reply({ content: 'A tua cor foi removida!', ephemeral: true });
-      } else await interaction.reply({ content: 'Não tens nenhuma cor para remover oh burro!', ephemeral: true });
+        return interaction.reply({ content: 'A tua cor foi removida!', ephemeral: true });
+      } else return interaction.reply({ content: 'Não tens nenhuma cor para remover oh burro!', ephemeral: true });
     }
 
     try {
@@ -204,7 +204,7 @@ module.exports = {
         filter: (i) =>
           i.user.id === interaction.user.id &&
           (i.customId === 'select_warm_color' || i.customId === 'select_cool_color'),
-        time: 60000, // Time in milliseconds to wait for the interaction
+        time: 60000,
       });
 
       // Handle the selection

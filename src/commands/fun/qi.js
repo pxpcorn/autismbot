@@ -11,14 +11,14 @@ module.exports = {
     const member = await interaction.guild.members.fetch(user.id);
 
     if (user.bot)
-      return await interaction.reply(`${interaction.user}, eu sou um bot oh burro! <:r_FacePalm:695376903279739004>`);
+      return interaction.reply(`${interaction.user}, eu sou um bot oh burro! <:r_FacePalm:695376903279739004>`);
 
     if (user === interaction.user) {
-      await interaction.reply(
+      return interaction.reply(
         `${user}, o teu nível de QI é de \`${Math.floor(Math.random() * 200)}\` <a:c_200qi:596453404579201043>`
       );
     } else {
-      await interaction.reply(
+      return interaction.reply(
         `${interaction.user}, o nível de QI de **${member.displayName}** é de \`${Math.floor(
           Math.random() * 200
         )}\` <a:c_200qi:596453404579201043>`

@@ -6,8 +6,8 @@ module.exports = {
   data: new SlashCommandBuilder().setName('ping').setDescription('Pong!'),
   async execute(interaction) {
     const ws = interaction.client.ws.ping;
-    const msg = await interaction.deferReply();
+    const msg = await interaction.deferReply({ fetchReply: true });
     await wait(1000);
-    await interaction.editReply(`WebSocket: ${ws}ms | Ping: ${msg.createdTimestamp - interaction.createdTimestamp}ms`);
+    return interaction.editReply(`WebSocket: ${ws}ms | Ping: ${msg.createdTimestamp - interaction.createdTimestamp}ms`);
   },
 };

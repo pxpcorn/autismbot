@@ -21,6 +21,6 @@ module.exports = {
         { name: '👶 **Birthday**', value: `<t:${parseInt(guild.createdTimestamp / 1000)}:R>`, inline: true }
       )
       .setFooter({ text: `${guild.name} | Created at ${guild.createdAt.toLocaleString()}`, iconURL: guild.iconURL() });
-    await interaction.reply({ embeds: [embed] });
+    return interaction.reply({ embeds: [embed] });
   },
 };

@@ -11,16 +11,14 @@ module.exports = {
     const member = await interaction.guild.members.fetch(user.id);
 
     if (user.bot)
-      return await interaction.reply(
-        `${interaction.user}, eu não papo crianças como tu. <:g_PepeFu:596803990365405219>`
-      );
+      return interaction.reply(`${interaction.user}, eu não papo crianças como tu. <:g_PepeFu:596803990365405219>`);
 
     if (user === interaction.user) {
-      await interaction.reply(
+      return interaction.reply(
         `${user}, o teu nível de pedofilia é de \`${Math.floor(Math.random() * 100)}%\` <:z_Viper:695376421467586581>`
       );
     } else {
-      await interaction.reply(
+      return interaction.reply(
         `${interaction.user}, o nível de pedofilia de **${member.displayName}** é de \`${Math.floor(
           Math.random() * 100
         )}%\` <:z_Viper:695376421467586581>`

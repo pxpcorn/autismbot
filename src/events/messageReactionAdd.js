@@ -2,9 +2,9 @@ const { Events, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = r
 const Starboard = require('../schemas/starboard');
 
 function getStarEmoji(starCount) {
-  if (starCount >= 5) return '🌟';
-  if (starCount >= 10) return '✨';
   if (starCount >= 20) return '🌠';
+  if (starCount >= 10) return '✨';
+  if (starCount >= 5) return '🌟';
   return '⭐';
 }
 

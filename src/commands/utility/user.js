@@ -24,6 +24,6 @@ module.exports = {
       )
       .setFooter({ text: `🕵️ User ID: ${user.id}` })
       .setTimestamp();
-    await interaction.reply({ embeds: [embed] });
+    return interaction.reply({ embeds: [embed] });
   },
 };

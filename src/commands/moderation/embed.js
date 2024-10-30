@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
+  cooldown: 5,
   data: new SlashCommandBuilder().setName('embed').setDescription('Send embed message'),
   async execute(interaction) {
     if (!interaction.member.roles.cache.has('366276830795399168')) {
@@ -41,6 +42,6 @@ module.exports = {
       );
 
     await infoChannel.send({ embeds: [embed, embed2, embed3, embed4, embed5, embed6] });
-    interaction.reply('Embed foi enviado com sucesso! ✅');
+    return interaction.reply('Embed foi enviado com sucesso! ✅');
   },
 };
