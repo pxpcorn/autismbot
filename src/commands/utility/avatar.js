@@ -9,17 +9,16 @@ module.exports = {
   async execute(interaction) {
     const user = interaction.options.getUser('user') || interaction.user;
     const member = await interaction.guild.members.fetch(user.id);
+    const av = member.displayAvatarURL({ size: 512 }) || user.displayAvatarURL({ size: 512 });
+    const avURL = member.avatarURL({ size: 512 }) || user.avatarURL({ size: 512 });
 
     const embed = new EmbedBuilder()
       .setColor(Math.floor(Math.random() * (1 << 24)))
       .setTitle(`${user.tag}'s avatar`)
-      .setImage(`${member.displayAvatarURL({ size: 512 })}`)
+      .setImage(av)
       .setTimestamp();
 
-    const button = new ButtonBuilder()
-      .setLabel('Avatar Link')
-      .setStyle(ButtonStyle.Link)
-      .setURL(`${member.avatarURL({ size: 512 })}`);
+    const button = new ButtonBuilder().setLabel('Avatar Link').setStyle(ButtonStyle.Link).setURL(avURL);
 
     const row = new ActionRowBuilder().addComponents(button);
 
