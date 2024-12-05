@@ -13,7 +13,7 @@
     "canvas": "^2.11.2",
     "discord.js": "^14.16.3",
     "dotenv": "^16.4.5",
-    "mongoose": "^8.7.1"
+    "mongoose": "^8.8.3"
   },
   "devDependencies": {
     "eslint": "^9.12.0"
