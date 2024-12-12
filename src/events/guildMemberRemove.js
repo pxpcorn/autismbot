@@ -9,6 +9,6 @@ module.exports = {
     const channel = member.guild.channels.cache.get('947580770866827315');
     if (!channel) return;
 
-    return channel.send(`\`${member.user.username}\` saiu do servidor. <a:v_PikaNoWay:695379520727023736>`);
+    return channel.send(`\`${member.user.username}\` saiu do servidor. -1 next <a:e_DogHi:555071736438063114>`);
   },
 };
