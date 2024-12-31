@@ -15,7 +15,8 @@ module.exports = {
       const fetchMsg = await message.channel.messages.fetch({ limit: 2 });
       const lastMsg = fetchMsg.size === 1 ? null : fetchMsg.last();
       if (
-        (message.content && (message.content.split(' ').length > 1 || message.content.length > 15)) ||
+        (message.content &&
+          (message.content.split(' ').length > 1 || message.content.length > 15 || message.content.includes('\n'))) ||
         message.author.bot ||
         lastMsg?.author.id === message.author.id
       ) {
@@ -30,7 +31,12 @@ module.exports = {
       const lastMessage = fetchedMessages.size === 1 ? null : fetchedMessages.last();
       const lastCount = lastMessage ? parseInt(lastMessage.content) : 0;
 
-      if (currentCount !== lastCount + 1 || lastMessage?.author.id === message.author.id) {
+      if (
+        currentCount !== lastCount + 1 ||
+        lastMessage?.author.id === message.author.id ||
+        message.content.split(' ').length > 1 ||
+        message.content.includes('\n')
+      ) {
         return message.delete().catch(console.error);
       }
     }
