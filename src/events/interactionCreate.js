@@ -7,6 +7,7 @@ module.exports = {
       if (
         interaction.customId === 'warm_colors' ||
         interaction.customId === 'cool_colors' ||
+        interaction.customId === 'gradient_colors' ||
         interaction.customId === 'remove_color'
       ) {
         try {

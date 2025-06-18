@@ -58,6 +58,21 @@ const colorNames = [
   'gray',
   'black',
   'white',
+  'magmabloom',
+  'peachylove',
+  'goldenflame',
+  'sunsetspark',
+  'bluehorizon',
+  'deepdive',
+  'mysticgrove',
+  'seafoamlight',
+  'greenpulse',
+  'springenergy',
+  'cottoncandy',
+  'blushmint',
+  'honeyrose',
+  'midnightglacier',
+  'crimsonnight',
 ];
 
 module.exports = {
@@ -85,6 +100,11 @@ module.exports = {
           value:
             '<@&873007353241419796> | `Violet`\n<@&873007556421906512> | `MediumOrchid`\n<@&873007427379929119> | `Fuchsia`\n<@&873007628031254558> | `DarkViolet`\n<@&873007698499760128> | `Purple`\n<@&873007783568629781> | `Indigo`\n<@&873007882965254216> | `GreenYellow`\n<@&873007967061041202> | `LawnGreen`\n<@&873008043258937354> | `Lime`\n<@&873008124146090066> | `LimeGreen`\n<@&873008219994353744> | `PaleGreen`\n<@&873008317021175829> | `Green`\n<@&873008389452599337> | `Cyan`\n<@&873008604628807721> | `Turquoise`\n<@&873008519908057139> | `Aquamarine`\n<@&873008698820280392> | `LightBlue`\n<@&873008779116052491> | `DeepSkyBlue`\n<@&873008858925240340> | `DodgerBlue`\n<@&873008936977051708> | `RoyalBlue`\n<@&873009020326256651> | `Blue`\n<@&873009095416893500> | `MidnightBlue`\n<@&873009678504849511> | `Lavender`\n<@&873009868603285564> | `Gray`\n<@&849487788809519174> | `Black`\n<@&873009595642175539> | `White`',
           inline: true,
+        },
+        {
+          name: '🌈 Cores Degradê 🌈 **(Boosters Only)**',
+          value:
+            '<@&1384978844439806124> | `MagmaBloom`\n<@&1384979605194014771> | `PeachyLove`\n<@&1384979454069309532> | `GoldenFlame`\n<@&1384980120514855002> | `SunsetSpark`\n<@&1384980502364295298> | `BlueHorizon`\n<@&1384980679829491822> | `DeepDive`\n<@&1384981382761021510> | `MysticGrove`\n<@&1384980808288440502> | `SeafoamLight`\n<@&1384981763847094422> | `GreenPulse`\n<@&1384990033416818709> | `SpringEnergy`\n<@&1384990284835979265> | `CottonCandy`\n<@&1384990511571669135> | `BlushMint`\n<@&1384990759475744768> | `HoneyRose`\n<@&1384991151437910211> | `MidnightGlacier`\n<@&1384991289204015215> | `CrimsonNight`',
         }
       )
       .setFooter({ text: '👇CLICA NO BOTÃO E ESCOLHE A TUA COR!👇' });
@@ -92,6 +112,7 @@ module.exports = {
     const row = new ActionRowBuilder().addComponents(
       new ButtonBuilder().setCustomId('warm_colors').setLabel('🔥Cores Quentes🔥').setStyle(ButtonStyle.Secondary),
       new ButtonBuilder().setCustomId('cool_colors').setLabel('❄️Cores Frias❄️').setStyle(ButtonStyle.Secondary),
+      new ButtonBuilder().setCustomId('gradient_colors').setLabel('🌈Cores Degradê🌈').setStyle(ButtonStyle.Secondary),
       new ButtonBuilder().setCustomId('remove_color').setLabel('🗑️Remover cor atual').setStyle(ButtonStyle.Danger)
     );
 
@@ -108,6 +129,17 @@ module.exports = {
       return interaction.reply({
         content:
           "**__Precisas de nível 5 para escolheres uma cor!__**\nSe ainda não sabes como chegar a nível 5, visita a sala <#804467403546165268> onde tens um pequeno 'faq' para entenderes como tudo funciona.",
+        ephemeral: true,
+      });
+    }
+    if (
+      interaction.customId === 'gradient_colors' &&
+      !interaction.member.roles.cache.has('589505228777324566') &&
+      !interaction.member.roles.cache.has('498606831967404044')
+    ) {
+      return interaction.reply({
+        content:
+          '**__Precisas de ser booster para escolheres uma cor degradê!__**\nVisita a sala <#706960491855085680> para saberes todas as vantagens de impulsionar o servidor.',
         ephemeral: true,
       });
     }
@@ -188,6 +220,35 @@ module.exports = {
         components: [coolColorMenu],
         ephemeral: true,
       });
+    } else if (interaction.customId === 'gradient_colors') {
+      const gradientColorMenu = new ActionRowBuilder().addComponents(
+        new StringSelectMenuBuilder()
+          .setCustomId('select_gradient_color')
+          .setPlaceholder('Escolhe uma cor degradê')
+          .addOptions([
+            { label: 'MagmaBloom', value: 'magmabloom' },
+            { label: 'PeachyLove', value: 'peachylove' },
+            { label: 'GoldenFlame', value: 'goldenflame' },
+            { label: 'SunsetSpark', value: 'sunsetspark' },
+            { label: 'BlueHorizon', value: 'bluehorizon' },
+            { label: 'DeepDive', value: 'deepdive' },
+            { label: 'MysticGrove', value: 'mysticgrove' },
+            { label: 'SeafoamLight', value: 'seafoamlight' },
+            { label: 'GreenPulse', value: 'greenpulse' },
+            { label: 'SpringEnergy', value: 'springenergy' },
+            { label: 'CottonCandy', value: 'cottoncandy' },
+            { label: 'BlushMint', value: 'blushmint' },
+            { label: 'HoneyRose', value: 'honeyrose' },
+            { label: 'MidnightGlacier', value: 'midnightglacier' },
+            { label: 'CrimsonNight', value: 'crimsonnight' },
+          ])
+      );
+
+      await interaction.reply({
+        content: '## Escolhe uma cor degradê:',
+        components: [gradientColorMenu],
+        ephemeral: true,
+      });
     } else if (interaction.customId === 'remove_color') {
       const currentColorRoles = interaction.member.roles.cache.filter((r) => colorNames.includes(r.name.toLowerCase()));
 
@@ -203,7 +264,9 @@ module.exports = {
       const selectMenuInteraction = await interaction.channel.awaitMessageComponent({
         filter: (i) =>
           i.user.id === interaction.user.id &&
-          (i.customId === 'select_warm_color' || i.customId === 'select_cool_color'),
+          (i.customId === 'select_warm_color' ||
+            i.customId === 'select_cool_color' ||
+            i.customId === 'select_gradient_color'),
         time: 60000,
       });
 
