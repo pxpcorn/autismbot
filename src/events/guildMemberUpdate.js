@@ -18,7 +18,27 @@ const bioRoles = [
   '498327060272513034',
 ];
 
+const colorRoles = [
+  '1384978844439806124',
+  '1384979605194014771',
+  '1384979454069309532',
+  '1384980120514855002',
+  '1384980502364295298',
+  '1384980679829491822',
+  '1384981382761021510',
+  '1384980808288440502',
+  '1384981763847094422',
+  '1384990033416818709',
+  '1384990284835979265',
+  '1384990511571669135',
+  '1384990759475744768',
+  '1384991151437910211',
+  '1384991289204015215',
+];
+
 const bioRoleId = '1276998449753096253';
+const boosterId = '589505228777324566';
+const modId = '498606831967404044';
 
 module.exports = {
   name: Events.GuildMemberUpdate,
@@ -41,6 +61,20 @@ module.exports = {
         } catch (error) {
           console.error('Error removing bio role');
         }
+      }
+    }
+
+    const isBooster = newMember.roles.cache.has(boosterId);
+    const isMod = newMember.roles.cache.has(modId);
+    const hasAnyColor = colorRoles.some((roleId) => newMember.roles.cache.has(roleId));
+
+    if (hasAnyColor && !isBooster && !isMod) {
+      try {
+        const rolesToRemove = colorRoles.filter((roleId) => newMember.roles.cache.has(roleId));
+
+        await newMember.roles.remove(rolesToRemove);
+      } catch (error) {
+        console.error('Erro ao remover roles de cor:', error);
       }
     }
   },
