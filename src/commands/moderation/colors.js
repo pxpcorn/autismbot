@@ -125,7 +125,7 @@ module.exports = {
 
   // Handling Button Interactions for Color Selection
   async handleButton(interaction) {
-    if (!interaction.member.roles.cache.has('459119370359013376')) {
+    if (!interaction.member.roles.cache.has('459119370359013376') && interaction.customId !== 'gradient_colors') {
       return interaction.reply({
         content:
           "**__Precisas de nível 5 para escolheres uma cor!__**\nSe ainda não sabes como chegar a nível 5, visita a sala <#804467403546165268> onde tens um pequeno 'faq' para entenderes como tudo funciona.",
