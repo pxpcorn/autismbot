@@ -26,17 +26,22 @@ module.exports = {
 
     /* ***** Counting System ***** */
     if (message.channel.id === '1102310198451904622' && !message.author.bot) {
-      const currentCount = parseInt(message.content);
+      const content = message.content;
+
+      if (content.split(' ').length > 1 || content.includes('\n') || !/^\d+$/.test(content)) {
+        return message.delete().catch(console.error);
+      }
+
+      if (content.length > 1 && content.startsWith('0')) {
+        return message.delete().catch(console.error);
+      }
+
+      const currentCount = parseInt(content, 10);
       const fetchedMessages = await message.channel.messages.fetch({ limit: 2 });
       const lastMessage = fetchedMessages.size === 1 ? null : fetchedMessages.last();
-      const lastCount = lastMessage ? parseInt(lastMessage.content) : 0;
+      const lastCount = lastMessage ? parseInt(lastMessage.content, 10) : 0;
 
-      if (
-        currentCount !== lastCount + 1 ||
-        lastMessage?.author.id === message.author.id ||
-        message.content.split(' ').length > 1 ||
-        message.content.includes('\n')
-      ) {
+      if (currentCount !== lastCount + 1 || lastMessage?.author.id === message.author.id) {
         return message.delete().catch(console.error);
       }
     }
