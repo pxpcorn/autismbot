@@ -60,5 +60,37 @@ module.exports = {
       }, 7200000);
       return;
     }
+
+    /* ***** Bot Speaks ***** */
+    const canalOrigemId = '568089899404886026';
+    const canalDestinoId = '947580770866827315';
+    const teuId = '362259065801277440';
+
+    if (message.author.id !== teuId) return;
+
+    if (message.channel.id !== canalOrigemId) return;
+
+    if (!message.content.startsWith('\\')) return;
+
+    const conteudo = message.content.slice(1);
+
+    const canalDestino = message.client.channels.cache.get(canalDestinoId);
+    if (!canalDestino) return console.error('Canal destino não encontrado!');
+
+    if (conteudo.trim() !== '') {
+      await canalDestino.send(conteudo);
+    }
+
+    if (message.attachments.size > 0) {
+      message.attachments.forEach((attachment) => {
+        canalDestino.send({ files: [attachment.url] });
+      });
+    }
+
+    try {
+      await message.delete();
+    } catch (err) {
+      console.error('Erro ao apagar mensagem:', err);
+    }
   },
 };
