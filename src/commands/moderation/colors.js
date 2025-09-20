@@ -73,6 +73,10 @@ const colorNames = [
   'honeyrose',
   'midnightglacier',
   'crimsonnight',
+  'toxicnight',
+  'neoneclipse',
+  'nebuladrift',
+  'cybergold',
 ];
 
 module.exports = {
@@ -104,7 +108,7 @@ module.exports = {
         {
           name: '🌈 Cores Degradê 🌈 **(Boosters Only)**',
           value:
-            '<@&1384978844439806124> | `MagmaBloom`\n<@&1384979605194014771> | `PeachyLove`\n<@&1384979454069309532> | `GoldenFlame`\n<@&1384980120514855002> | `SunsetSpark`\n<@&1384980502364295298> | `BlueHorizon`\n<@&1384980679829491822> | `DeepDive`\n<@&1384981382761021510> | `MysticGrove`\n<@&1384980808288440502> | `SeafoamLight`\n<@&1384981763847094422> | `GreenPulse`\n<@&1384990033416818709> | `SpringEnergy`\n<@&1384990284835979265> | `CottonCandy`\n<@&1384990511571669135> | `BlushMint`\n<@&1384990759475744768> | `HoneyRose`\n<@&1384991151437910211> | `MidnightGlacier`\n<@&1384991289204015215> | `CrimsonNight`',
+            '<@&1384978844439806124> | `MagmaBloom`\n<@&1384979605194014771> | `PeachyLove`\n<@&1384979454069309532> | `GoldenFlame`\n<@&1384980120514855002> | `SunsetSpark`\n<@&1384980502364295298> | `BlueHorizon`\n<@&1384980679829491822> | `DeepDive`\n<@&1384981382761021510> | `MysticGrove`\n<@&1384980808288440502> | `SeafoamLight`\n<@&1384981763847094422> | `GreenPulse`\n<@&1384990033416818709> | `SpringEnergy`\n<@&1384990284835979265> | `CottonCandy`\n<@&1384990511571669135> | `BlushMint`\n<@&1384990759475744768> | `HoneyRose`\n<@&1384991151437910211> | `MidnightGlacier`\n<@&1384991289204015215> | `CrimsonNight`\n<@&1419013246257729536> | `ToxicNight`\n<@&1419014753224884315> | `NeonEclipse`\n<@&1419023288352378940> | `NebulaDrift`\n<@&1419021584685076643> | `CyberGold`',
         }
       )
       .setFooter({ text: '👇CLICA NO BOTÃO E ESCOLHE A TUA COR!👇' });
@@ -125,7 +129,11 @@ module.exports = {
 
   // Handling Button Interactions for Color Selection
   async handleButton(interaction) {
-    if (!interaction.member.roles.cache.has('459119370359013376') && interaction.customId !== 'gradient_colors') {
+    if (
+      !interaction.member.roles.cache.has('459119370359013376') &&
+      interaction.customId !== 'gradient_colors' &&
+      interaction.customId !== 'remove_color'
+    ) {
       return interaction.reply({
         content:
           "**__Precisas de nível 5 para escolheres uma cor!__**\nSe ainda não sabes como chegar a nível 5, visita a sala <#804467403546165268> onde tens um pequeno 'faq' para entenderes como tudo funciona.",
@@ -134,8 +142,8 @@ module.exports = {
     }
     if (
       interaction.customId === 'gradient_colors' &&
-      !interaction.member.roles.cache.has('589505228777324566') &&
-      !interaction.member.roles.cache.has('498606831967404044')
+      !interaction.member.roles.cache.has('589505228777324566') && // booster
+      !interaction.member.roles.cache.has('498606831967404044') // moderator
     ) {
       return interaction.reply({
         content:
@@ -241,6 +249,10 @@ module.exports = {
             { label: 'HoneyRose', value: 'honeyrose' },
             { label: 'MidnightGlacier', value: 'midnightglacier' },
             { label: 'CrimsonNight', value: 'crimsonnight' },
+            { label: 'ToxicNight', value: 'toxicnight' },
+            { label: 'NeonEclipse', value: 'neoneclipse' },
+            { label: 'NebulaDrift', value: 'nebuladrift' },
+            { label: 'CyberGold', value: 'cybergold' },
           ])
       );
 
