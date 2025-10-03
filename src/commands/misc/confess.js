@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const ConfessionNumber = require('../../schemas/confession');
 
 async function initializeConfessionCounter() {
@@ -16,14 +16,15 @@ module.exports = {
     .setName('confess')
     .setDescription('Escreve uma confissão')
     .addStringOption((option) => option.setName('confession').setDescription('a tua confissão').setRequired(true)),
+
   async execute(interaction) {
-    const confession = interaction.client.channels.cache.get('577996273571987466');
-    const logs = interaction.client.channels.cache.get('568089899404886026');
+    const confession = interaction.client.channels.cache.get('577996273571987466'); // Canal das confissões
+    const logs = interaction.client.channels.cache.get('568089899404886026'); // Canal de logs
 
     if (interaction.channel.id === '577996163215654922') {
       await interaction.reply({
         content: `✅ A tua confissão foi enviada para ${confession.url}`,
-        ephemeral: true,
+        flags: 64, // Ephemeral
       });
 
       const confessionDoc = await ConfessionNumber.findOneAndUpdate(
@@ -41,8 +42,17 @@ module.exports = {
         .setFooter({ text: '❗All confessions are anonymous.' })
         .setTimestamp();
 
-      const logID = await confession.send({ embeds: [embed] });
+      // Adicionar botão "Responder"
+      const row = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+          .setCustomId(`confess_reply_${currentNumber}`)
+          .setLabel('💬 Responder')
+          .setStyle(ButtonStyle.Primary)
+      );
 
+      const logID = await confession.send({ embeds: [embed], components: [row] });
+
+      // Embed para logs (visível só para mods/admins)
       const embedLog = new EmbedBuilder()
         .setColor(Math.floor(Math.random() * (1 << 24)))
         .setTitle('Confession Log')
@@ -52,7 +62,9 @@ module.exports = {
           { name: 'Link', value: `${logID.url}` }
         )
         .setTimestamp();
+
       return logs.send({ embeds: [embedLog] });
     }
   },
 };
+

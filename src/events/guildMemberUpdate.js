@@ -26,6 +26,7 @@ const colorRoles = [
   '1384980502364295298',
   '1384980679829491822',
   '1384981382761021510',
+  '1419066337287864331',
   '1384980808288440502',
   '1384981763847094422',
   '1384990033416818709',
@@ -39,6 +40,7 @@ const colorRoles = [
   '1419023288352378940',
   '1419021584685076643',
 ];
+
 
 const bioRoleId = '1276998449753096253';
 const boosterId = '589505228777324566';
@@ -79,6 +81,18 @@ module.exports = {
         await newMember.roles.remove(rolesToRemove);
       } catch (error) {
         console.error('Erro ao remover roles de cor:', error);
+      }
+    }
+
+    const hasRole = newMember.roles.cache.has('1423707548183429173');
+
+    if (hasRole) {
+      if (!newMember.roles.cache.has('422411712428245007')) {
+        try {
+          await newMember.roles.remove('1423707548183429173');
+        } catch (err) {
+          console.log("Erro ao remover a role nsfw");
+        }
       }
     }
   },

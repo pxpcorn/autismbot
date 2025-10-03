@@ -65,6 +65,7 @@ const colorNames = [
   'bluehorizon',
   'deepdive',
   'mysticgrove',
+  'venuspulse',
   'seafoamlight',
   'greenpulse',
   'springenergy',
@@ -108,7 +109,7 @@ module.exports = {
         {
           name: '🌈 Cores Degradê 🌈 **(Boosters Only)**',
           value:
-            '<@&1384978844439806124> | `MagmaBloom`\n<@&1384979605194014771> | `PeachyLove`\n<@&1384979454069309532> | `GoldenFlame`\n<@&1384980120514855002> | `SunsetSpark`\n<@&1384980502364295298> | `BlueHorizon`\n<@&1384980679829491822> | `DeepDive`\n<@&1384981382761021510> | `MysticGrove`\n<@&1384980808288440502> | `SeafoamLight`\n<@&1384981763847094422> | `GreenPulse`\n<@&1384990033416818709> | `SpringEnergy`\n<@&1384990284835979265> | `CottonCandy`\n<@&1384990511571669135> | `BlushMint`\n<@&1384990759475744768> | `HoneyRose`\n<@&1384991151437910211> | `MidnightGlacier`\n<@&1384991289204015215> | `CrimsonNight`\n<@&1419013246257729536> | `ToxicNight`\n<@&1419014753224884315> | `NeonEclipse`\n<@&1419023288352378940> | `NebulaDrift`\n<@&1419021584685076643> | `CyberGold`',
+            '<@&1384978844439806124> | `MagmaBloom`\n<@&1384979605194014771> | `PeachyLove`\n<@&1384979454069309532> | `GoldenFlame`\n<@&1384980120514855002> | `SunsetSpark`\n<@&1384980502364295298> | `BlueHorizon`\n<@&1384980679829491822> | `DeepDive`\n<@&1384981382761021510> | `MysticGrove`\n<@&1419066337287864331> | `VenusPulse`\n<@&1384980808288440502> | `SeafoamLight`\n<@&1384981763847094422> | `GreenPulse`\n<@&1384990033416818709> | `SpringEnergy`\n<@&1384990284835979265> | `CottonCandy`\n<@&1384990511571669135> | `BlushMint`\n<@&1384990759475744768> | `HoneyRose`\n<@&1384991151437910211> | `MidnightGlacier`\n<@&1384991289204015215> | `CrimsonNight`\n<@&1419013246257729536> | `ToxicNight`\n<@&1419014753224884315> | `NeonEclipse`\n<@&1419023288352378940> | `NebulaDrift`\n<@&1419021584685076643> | `CyberGold`',
         }
       )
       .setFooter({ text: '👇CLICA NO BOTÃO E ESCOLHE A TUA COR!👇' });
@@ -241,6 +242,7 @@ module.exports = {
             { label: 'BlueHorizon', value: 'bluehorizon' },
             { label: 'DeepDive', value: 'deepdive' },
             { label: 'MysticGrove', value: 'mysticgrove' },
+            { label: 'VenusPulse', value: 'venuspulse' },
             { label: 'SeafoamLight', value: 'seafoamlight' },
             { label: 'GreenPulse', value: 'greenpulse' },
             { label: 'SpringEnergy', value: 'springenergy' },

@@ -1,9 +1,10 @@
-const { Collection, Events } = require('discord.js');
+const { Collection, Events, MessageType, PermissionsBitField } = require('discord.js');
 
 module.exports = {
   name: Events.InteractionCreate,
   async execute(interaction) {
     if (interaction.isButton()) {
+      // Botões de cores
       if (
         interaction.customId === 'warm_colors' ||
         interaction.customId === 'cool_colors' ||
@@ -15,8 +16,48 @@ module.exports = {
         } catch (error) {
           console.error(error);
         }
+        return;
       }
-      return;
+
+      // Botões de confissões
+      if (interaction.customId.startsWith('confess_reply_')) {
+        const confessionNumber = interaction.customId.split('_')[2];
+        let thread = interaction.channel.threads.cache.find((t) => t.name === `confession-${confessionNumber}`);
+
+        if (!thread) {
+          thread = await interaction.message.startThread({
+            name: `confession-${confessionNumber}`,
+            autoArchiveDuration: 1440,
+          });
+          // espera rápida para a mensagem de sistema aparecer
+          await new Promise((res) => setTimeout(res, 700));
+
+          try {
+            const fetched = await interaction.channel.messages.fetch({ limit: 12 });
+
+            const sysMsg = fetched.find(
+              (m) =>
+                m.type === MessageType.ThreadCreated ||
+                m.system === true ||
+                (typeof m.content === 'string' &&
+                  m.content.includes(`started a thread`) &&
+                  m.content.includes(thread.name))
+            );
+
+            if (sysMsg) {
+              await sysMsg.delete().catch((err) => console.error('Erro ao apagar mensagem de sistema:', err));
+            }
+          } catch (err) {
+            console.error('Erro ao procurar/apagar mensagem de sistema:', err);
+          }
+        }
+
+        await interaction.reply({
+          content: `💬 Podes continuar a conversa aqui: ${thread}`,
+          flags: 64,
+        });
+        return;
+      }
     }
 
     if (!interaction.isChatInputCommand()) return;
