@@ -10,7 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "canvas": "^2.11.2",
+    "canvas": "^3.2.1",
     "discord.js": "^14.19.3",
     "dotenv": "^16.5.0",
     "mongoose": "^8.15.0"
