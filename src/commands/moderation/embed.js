@@ -19,8 +19,9 @@ module.exports = {
       .setColor('B9FF66')
       .setTitle('<a:g_PepeHat:1241409438456348695> Sobre o servidor <a:g_PepeHat:1241409438456348695>')
       .setDescription(
-        'O **Autism™** foi fundado a 7 de Outubro de 2017 com o intuito de criar um espaço onde as pessoas pudessem conviver fugindo um pouco às típicas regras chatas que outros servidores costumam impor.\n\nÉ um servidor super relaxado e exige o mínimo de sentido de humor se procuras integrar-te nesta família. Foi considerado durante muitos anos o servidor mais ativo de Portugal e procuramos sempre tentar manter esse estatuto.\n\n\n**__BEM-VINDO AO MELHOR SERVIDOR DE PORTUGAL!__**\n\n\n🔗 **__OFFICIAL LINKS__**\n<:discord:1294435815413383179> **Invite:** https://discord.gg/autismcrew\n<:tiktok:1294436716488425482> **TikTok:** https://www.tiktok.com/@discordtuga\n<:instagram:1294437959877267476> **Instagram:** https://www.instagram.com/discordtuga\n<:youtube:1294436717818019860> **Youtube:** https://www.youtube.com/@discordtuga'
-      );
+        'O **Autism™** foi fundado a 7 de Outubro de 2017 com o intuito de criar um espaço onde as pessoas pudessem conviver fugindo um pouco às típicas regras chatas que outros servidores costumam impor.\n\nÉ um servidor super relaxado e exige o mínimo de sentido de humor se procuras integrar-te nesta família. Foi considerado durante muitos anos o maior e mais ativo servidor português e procuramos sempre tentar manter esse estatuto.\n\n\n**__BEM-VINDO AO MELHOR SERVIDOR DE PORTUGAL!__**'
+      )
+      .setImage(interaction.guild.iconURL());
 
     const embed3 = new EmbedBuilder().setColor('#00FFFF').setImage('https://i.imgur.com/LijSBdH.png');
 
@@ -28,7 +29,7 @@ module.exports = {
       .setColor('B9FF66')
       .setTitle('<:g_PepeTOS:816865612448923651> RULES <:g_PepeTOS:816865612448923651>')
       .setDescription(
-        'Apesar de ser um server muito liberal, é preciso respeitar alguns pontos cruciais para mantermos a organização no nosso servidor.\n\n\n**__REGRAS BÁSICAS DE FUNCIONAMENTO:__**\n\n❗**Sem conteúdo NSFW!** Não é permitido pornografia, gore ou imagens de crueldade animal. Imagens para prazer sádico e glorificação de violência será igualmente punido.\n❗**Não expôr informação privada e pessoal de outra pessoa sem o seu consentimento** (morada, número de telemóvel, redes sociais, fotografias, etc..)\n❗**Não sejam demasiado autistas com os novos membros.** Eles podem não perceber que estão a brincar.\n❗**Proibído qualquer tipo de assédio grave** (Blackmailing, Cyberbullying, DM spamming, etc..).\n❗**Não é permitido double accounting.** Contas fakes serão banidas de imediato.\n❗**Respeita todos os moderadores.** Se não concordares com alguma ação da Staff, manda mensagem privada ao Admin.\n❗**Sem scam ou IP loggers.** Colocar um link na tentativa de roubar informação privada vai resultar num ban imediato.\n❗**Reduz qualquer barulho de fundo irritante.** Se não for possível, por favor usa o Push-to-Talk. Ear rapes propositados vão resultar em voice mute.\n❗**Não spamem a tag da Staff sem necessidade.**\n❗**Instant bans serão dados se:** Tentares dar raid, spamares invites por DM, etc.\n❗**Não sejam pussies.** Tenham senso comum para perceber humor e sarcasmo.'
+        'Apesar de ser um server muito liberal, é preciso ter algum senso comum para mantermos a organização no nosso servidor.\n\n\n**__REGRAS BÁSICAS DE FUNCIONAMENTO:__**\n\n❗**Proibido conteúdo NSFW!**\n\n❗**Probido double accounts!**\n\n❗**Proibido qualquer tentativa de burla ou roubo de informação!**\n\n❗**Não expôr informação privada e pessoal de outra pessoa!**\n\n❗**Ear rapes propositados vão resultar em voice mute ou ban!**\n\n❗**Não spamem a tag da Staff sem necessidade!**\n\n❗**Não sejam pussies!\n\n**'
       )
       .setFooter({ text: 'O Autism™ segue obrigatoriamente todas as Community Guidelines do ToS do Discord.' });
 
